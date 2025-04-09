@@ -1,0 +1,23 @@
+def rep_char(c, n):
+    return c * n
+
+def draw_line_string(msg):
+    n = len(msg)
+    line = rep_char('-', n)
+    print(line)
+    print(msg)
+    print(line)
+
+name = input("Input his/her name: ")
+
+msg1 = f"Hello {name},"
+msg2 = "Welcome to Seoul."
+if len(msg1) > len(msg2):
+    nstr = len(msg1)
+else:
+    nstr = len(msg2)
+
+print(rep_char('-', nstr))
+print(msg1)
+print(msg2)
+print(rep_char('-', nstr))
