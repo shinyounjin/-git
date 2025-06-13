@@ -1,0 +1,133 @@
+import os
+
+filename = 'example.txt'
+if os.path.exists(filename):
+    file = open(filename,'r')
+    file.close()
+    print('파일 열고 닫기 완료')
+else:
+    print(f'ERROR: {filename}이 존재하지 않습니다!')
+
+print('끝')
+------------------------------------------------------------------
+import os
+
+if not(os.path.isdir('c:/data')):
+    os.makedirs('c:/data')
+file = open('c:/data/ex.txt', 'w')
+file.close()
+----------------------------------------------------------------
+num = 2
+name = '홍길동'
+
+with open('c:/data/ex.txt', 'w') as file:
+    file.write('1 이찬수\n')
+    file.write(f'{num} {name}\n')
+
+print('끝')
+
+-----------------------------------------------------------------------
+lines = []
+with open('c:/data/ex.txt', 'r') as file:
+    lines = file.readlines()
+
+print(lines)
+------------------------------------------------------------------
+lines = []
+with open('c:/data/ex.txt', 'r') as file:
+    while True:
+        line = file.readline()
+
+        if line == '':
+            break
+
+        lines.append(line.strip())
+
+print(lines)
+
+-------------------------------------------------------------
+lines = []
+with open('c:/data/ex.txt', 'r') as file:
+    for line in file:
+        lines.append(line.strip('\n'))
+        
+print(lines)
+--------------------------------------------------------------
+import pickle
+
+filepath = 'data/example.bin'
+
+def save_data(num, name):
+    with open(filepath.'wb') as file:
+        pickle.dump(num, file)
+        pickle.dump(name, file)
+
+def load_data():
+    with open(filepath.'rb') as file:
+        num = pickle.load(file)
+        name = pickle.load(file)
+
+    return num, name
+num, name = 123, '홍길동', 180.5
+scores = {'mid': 90, 'fin': 95, 'rep': 10, 'att': 10}
+save_data(num, name)
+r_num, r_name = load_data()
+
+print(r_num)
+print(r_name)
+------------------------------------------------------------------
+def show_file(filename):
+    with open(filename, mode = 'r', encoding = 'utf8') as file:
+        i = 1
+        while True:
+            line = file.readline()
+
+            if line == '':
+                break
+            print(f'{i}: {line.strip()}')
+            i += 1
+
+fn = input('파일명:')
+show_file(fn)
+------------------------------------------------------------------
+import os
+filename = 'shoppingbag.txt'
+
+def buy(sbag):
+    print('[구입]')
+    item = input('상품명?')
+
+    if item == '':
+        return False
+
+    sbag.append(item)
+    print(f'장바구니에 {item}이(가) 담겼습니다\n')
+
+    return True
+def show(sbag):
+    print(sbag)
+
+def save_data(sbag, filepath):
+    with open(filepath, 'w', encoding = 'utf8') as file:
+        for item in sbag:
+            file.write(f'{item}\n')
+
+def load_data(filepath):
+    lines = []
+    with open(filepath, 'r', encoding = 'utf8') as file:
+        for line in file:
+            lines.append(line.strip('\n'))
+    return lines
+if os.path.exists(filename):
+    print('[파일 읽기]')
+    shopping_bag = load_data(filename)
+else:
+    shopping_bag = []
+
+while True:
+    if buy(shopping_bag) == False:
+        break
+show(shopping_bag)
+save_data(shopping_bag.filename)
+------------------------------------------------------------------------------------
+
