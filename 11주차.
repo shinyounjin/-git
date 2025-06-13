@@ -1,0 +1,177 @@
+class Circle :
+    def getCircumference(self) :
+        result = 2 * 3.14159265 * self.radius
+        return result
+
+    def gerArea(self) :
+        result = 3.14159265 * self.radius ** 2
+        return result
+
+small = Circle()
+big = Circle()
+
+small.radius = 1
+big.radius = 10
+
+print(f'반지름 {small.radius}인 원의 ',end = '')
+print(f'둘레는 {small.getCircumference():.2f}인 이고 ',end = '')
+print(f'반지름 {small.getArea():.2f}이다.')
+
+print(f'반지름 {big.radius}인 원의 ',end = '')
+print(f'둘레는 {big.getCircumference():.2f}이고 ',end = '')
+print(f'반지름 {big.getArea():.2f}이다.')
+--------------------------------------------------------------------------------------------
+class Circle :
+    def __init__(self, radius):
+        self.radius = radius
+
+    def getCircumference(self) :
+        result = 2 * 3.14159265 * self.radius
+        return result
+
+    def getArea(self) :
+        result = 3.14159265 * self.radius ** 2
+        return result
+
+small = Circle(1)
+big = Circle(10)
+
+print(f'반지름 {small.radius}인 원의 ',end = '')
+print(f'둘레는 {small.getCircumference():.2f}이고 ',end = '')
+print(f'넓이는 {small.getArea():.2f}이다.')
+
+print(f'반지름 {big.radius}인 원의 ',end = '')
+print(f'둘레는 {big.getCircumference():.2f}이고 ',end = '')
+print(f'넓이는 {big.getArea():.2f}이다.')
+
+-----------------------------------------------------------------------------------
+class Circle :
+    def __init__(self, radius):
+        self.__radius = radius
+
+    def getCircumference(self) :
+        result = 2 * 3.14159265 * self.__radius
+        return result
+
+    def getArea(self) :
+        result = 3.14159265 * self.__radius ** 2
+        return result
+
+    def setRadius(self, radius) :
+        self.__radius = radius
+
+    def getRadius(self) :
+        return self.__radius
+
+big = Circle(10)
+big.setRadius(100)
+print(big.getRadius())
+-------------------------------------------------------------------
+class Circle :
+    __PI = 3.14159265
+    
+    def __init__(self, radius):
+        self.__radius = radius
+
+    def getCircumference(self) :
+        result = 2 * Circle.__PI * self.__radius
+        return result
+
+    def getArea(self) :
+        result = Circle.__PI * self.__radius ** 2
+        return result
+
+small = Circle(1)
+big = Circle(10)
+------------------------------------------------------------------
+class Circle :
+    __PI = 3.14159265
+
+    @staticmethod
+    def getPI() :
+        return Circle.__PI
+    
+    def __init__(self, radius):
+        self.__radius = radius
+
+    def getCircumference(self) :
+        result = 2 * Circle.__PI * self.__radius
+        return result
+
+    def getArea(self) :
+        result = Circle.__PI * self.__radius ** 2
+        return result
+
+small = Circle(1)
+big = Circle(10)
+--------------------------------------------------------------------
+class Point:
+    def __init__(self, x=0, y=0):
+        self.__x = x
+        self.__y = y
+
+    def show(self) :
+        print(f'({self.__x}, {self.__y})')
+
+    def set(self, x, y):
+        self.__x = x
+        self.__y = y
+
+    def get(self):
+        return (self.__x, self.__y)
+
+def test():
+    p1 = Point()
+    p2 = Point(2, 3)
+
+    p1.show() ;
+    
+    p1.set(10, 20) ; p1.show() ;      
+
+    p2.show() ;             
+
+    x, y = p2.get()
+    print(f"x={x}, y={y}")
+
+if __name__ == '__main__':
+    test()
+--------------------------------------------------------------------------
+class Time:
+    def __int__(self,hour = 0,minute = 0):
+        self.__hour = hour
+        self.__minute = minute
+
+    def display(self):
+         print(f'{self.__hour:02d}:{self.__minute:02d}')
+
+    def add(self, time):
+        h = self.__hour + time.__hour
+        m = self.__minute + time.__minute
+        if m >= 60:
+            h += 1
+            m -= 60
+        return Time(h, m)
+        
+    @staticmethod
+    def is_vaild(hour, minute):
+        if 0 <= hour < 24 and 0 <= minute < 60:
+            return True
+        return False
+
+def main():
+    t1 = Time(9)
+    t2 = Time(9, 30)
+
+    t1.display()
+    t2.display()
+
+    later = t1.add(Time(1, 15))
+    later.display()
+
+    if Time.is_valid(25, 0):
+        print("유효한 시각")
+    else:
+        print("유효하지 않은 시각") 
+
+if __name__ == '__main__':
+    main()
